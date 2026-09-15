@@ -46,7 +46,30 @@ const SITE_DATA = {
     ],
     note: "等等（看得偏老，新的很多都沒看過）",
   },
+// 渲染音樂區塊
+function renderMusic() {
+  const musicContainer = document.getElementById("music-content");
+  if (!musicContainer || !SITE_DATA.music) return;
 
+  const { items, note } = SITE_DATA.music;
+  if (!items || items.length === 0) return;
+
+  let html = `<div class="card"><ul class="tag-list">`;
+  items.forEach(item => {
+    html += `<li class="tag">${item}</li>`;
+  });
+  html += `</ul>`;
+
+  if (note) {
+    html += `<p class="note" style="margin-top: 10px; opacity: 0.8;">${note}</p>`;
+  }
+  html += `</div>`;
+
+  musicContainer.innerHTML = html;
+}
+
+// 記得在 DOMContentLoaded 或初始化處呼叫它：
+renderMusic();
  // ---音樂
  music: {
     items: ["（任然/蘭音/銀臨/三無/黃詩扶/司南/KB/祖婭納惜/Mili/不才/哦漏/周深/坂本真綾/排骨教主/茶二娘）"],
